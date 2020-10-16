@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
+    'corsheaders',  # django-cors-headers
 
     # Local
     'todos.apps.TodosConfig',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',    # cors
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -128,8 +130,15 @@ STATIC_URL = '/static/'
 
 # Customize
 
+# REST global Permissions
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+# CORS
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',    # dj
+    'http://localhost:3000',    # react
+)
