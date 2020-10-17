@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('api/v1/rest-auth/', include('dj_rest_auth.urls')),
     path('api/v1/rest-auth/registration/',
          include('dj_rest_auth.registration.urls')),
+    path('schema/', get_schema_view(title='Blog API')),
 ]
