@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.schemas import get_schema_view
+from drf_yasg2 import openapi
+from drf_yasg2.views import get_schema_view
 from rest_framework.documentation import include_docs_urls
 
 API_TITLE = 'Blog API'
 API_DESCRIPTION = 'A Web API for creating and editing blog posts.'
+
+schema_view = get_schema_view(openapi.Info(
+    default_version='v1',
+    title=API_TITLE,
+    description=API_DESCRIPTION,
+))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +39,6 @@ urlpatterns = [
         title=API_TITLE,
         description=API_DESCRIPTION
     )),
-    path('schema/', get_schema_view(title=API_TITLE)),
+    path('swagger-docs/', schema_view.with_ui('swagger')),
+    path('redoc/', schema_view.with_ui('redoc')),
 ]

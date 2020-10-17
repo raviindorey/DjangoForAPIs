@@ -12,6 +12,8 @@ dj-rest-auth = "*"
 django-allauth = "*"
 coreapi = "*"
 pyyaml = "*"
+packaging = "*"
+drf-yasg2 = "*"
 
 [requires]
 python_version = "3.8"
